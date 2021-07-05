@@ -1,0 +1,36 @@
+@import "../variables";
+
+.header {
+    color: $text-color;
+    background-color: $bg-color;
+    font-family: PT Serif, Georgia, serif;
+    font-size: $font-size-medium;
+}
+
+.menu {
+    &__link{
+        display: flex;
+        padding-left: $step*2; 
+        text-align: center;
+        line-height: 2;
+        color: $text-color;
+        text-decoration: none; 
+       }
+       &__link:hover {
+        color: $color-active-link; 
+        text-decoration: none;
+    }
+}
+
+.logo{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.button {
+    color:$color-btn;
+}
+
+.input{
+    color:$color-btn;
+}

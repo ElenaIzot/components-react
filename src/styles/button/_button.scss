@@ -1,0 +1,50 @@
+.btn-arrow{
+    display: block;
+    background-color: $color-btn;
+    border: none;
+    border-radius: 5px;
+ 
+    &__arrow-up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+    
+    &__arrow-down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    &__arrow-left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+
+    &__arrow-right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+   
+}
+
+span {
+    border: solid #9a9da5;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+
+.btn{
+    display: block;
+    border: none;
+    border-radius: 10px;
+    background-color: $bg-color-form;
+    font-size: $font-size-default;
+    color: white; 
+    height: 48px;
+    width: 146px;
+    margin-bottom: $step;
+}
+
+
+

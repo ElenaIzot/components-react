@@ -1,0 +1,13 @@
+.footer{
+    flex-shrink: 0;
+    min-height: 5vh;
+    max-height: 15vh;
+    border: solid 1px $border-color;
+    color: $color-active-link; ;
+    background-color: $bg-color;
+    text-align: center;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-medium;
+    padding: $step*2 $step;
+    font-family: PT Serif, Georgia, serif;
+}

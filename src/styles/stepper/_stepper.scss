@@ -1,0 +1,33 @@
+.stepper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;;
+    font-size: $font-size-default;
+    line-height: normal;
+    &__item {
+        display: flex;
+        flex-direction: row;
+        width: calc(1/2*100% - (1 - 1/2)*100px);
+        background-color: $bg-color-box;
+        border-radius: $border-radius;
+        border: none;
+        // width: 150px;
+        padding: $step;
+        border: $border;
+        color: $text-color;
+        font-weight: $font-weight-medium;
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+    &__stepper_btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    &__count {
+        font-size: 22px;
+        padding: 4px;
+        padding-left: 16px;
+    }
+}
