@@ -23,12 +23,13 @@ export function getDaysForCalendar(year: number, month: number): Date[] {
         result.push(day);
     }
 
-    for (let offsetDays = 1; offsetDays < dayOfWeekForFirstDay; ++offsetDays) {
+        for (let offsetDays = 1; offsetDays < dayOfWeekForFirstDay; ++offsetDays) {
         const day = new Date(firstDayOfMonth);
         day.setDate(day.getDate() - offsetDays);
         result.unshift(day);
     }
     
+    console.log(result)
     return result
 }
 

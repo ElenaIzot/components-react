@@ -15,10 +15,7 @@ function Datepicker(): JSX.Element {
     let [value, setValue] = useState(today);
     let [selectedDate, setSelectedDate] = useState(currentDate);
    
-
-    function showSelectedDate(): void {
-        setSelectedDate(currentDate);
-    }
+    const className = "datepicker__day_active-month" + (value ? "datepicker__day_selected-day" : "");
 
     function showItems(): void {
         setVisible(true);
@@ -49,12 +46,12 @@ function Datepicker(): JSX.Element {
     const renderedlistDays = listDays.map((day, index) => {
         if (day.getMonth() == currentMonth) {
             if (day.getDate() == currentDate) {
-                return <li className="datepicker__day_active-month datepicker__day_current-day" key={index} >{day.getDate()}</li>
+                return <li className="datepicker__day_active-month datepicker__day_current-day" onClick={() => setValue(day.toLocaleDateString())} key={index}>{day.getDate()}</li>
             } else {
-                return <li className="datepicker__day_active-month" onClick={showSelectedDate} key={index} >{day.getDate()}</li>
+                return <li className="datepicker__day_active-month" onClick={() => setValue (day.toLocaleDateString())} key={index} >{day.getDate()}</li>
             }
         } else {
-            return <li className="datepicker__day_inactive-month" onClick={showSelectedDate} key={index}>{day.getDate()}</li>
+            return <li className="datepicker__day_inactive-month" onClick={() => setValue (day.toLocaleDateString())} key={index}>{day.getDate()}</li>
         }
     }
 

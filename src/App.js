@@ -10,7 +10,7 @@ function App() {
   return (
     <> 
     <div className="section">
-      <Stepper />т
+      <Stepper />
     </div>
 
     <div className="section">
