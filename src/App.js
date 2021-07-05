@@ -4,11 +4,11 @@ import Dropdown from "./Components/Dropdown";
 import Datepicker from "./Components/Calendar/Datepicker";
 
 const names = ['Figma', 'Photoshop', 'Sketch', 'Framer', 'InVision Studio','Figma', 'Photoshop', 'Sketch', 'Framer', 'InVision Studio'];
-const cities = ['Tomsk', 'Kemerovo', 'Moscow', 'Vladivostok', 'Omsk','Krasnoyarsk', 'Chita', 'Irketsk'];
+const cities = ['Tomsk', 'Kemerovo', 'Moscow', 'Vladivostok', 'Omsk','Krasnoyarsk', 'Chita', 'Irkytsk'];
 
 function App() {
   return (
-    <>
+    <> 
     <div className="section">
       <Stepper />т
     </div>
