@@ -7,6 +7,7 @@
     &__arrow-up {
         transform: rotate(-135deg);
         -webkit-transform: rotate(-135deg);
+        
     }
     
     &__arrow-down {
@@ -17,11 +18,13 @@
     &__arrow-left {
         transform: rotate(135deg);
         -webkit-transform: rotate(135deg);
+        padding: 5px;
     }
 
     &__arrow-right {
         transform: rotate(-45deg);
         -webkit-transform: rotate(-45deg);
+        padding: 5px;
     }
    
 }
@@ -44,6 +47,7 @@ span {
     height: 48px;
     width: 146px;
     margin-bottom: $step;
+    
 }
 
 
