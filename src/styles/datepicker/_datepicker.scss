@@ -1,21 +1,24 @@
 .datepicker {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: $bg-color-form;
-    margin: $step;
+    margin: $step*2 auto;
     border-radius: $border-radius;
     font-size: $font-size-max;
     color: white;
     height: 72px;
+    width: 564px;
     align-items: center;
     line-height: normal;
+    cursor: pointer;
 
     &__slider {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         margin: $step 0px;
+        padding: $step;
     }
 
     &__current-item {
@@ -25,38 +28,52 @@
     }
 
     &__control {
-        margin: $step $step * 3;
+       
+        padding: $step;
+        color: #808497;
+        border-radius: 8px;
+        background-color: #3b414a;
+        width: 46px;
+        height: 46px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 22px;
     }
 
     &__datepicker-visible {
         background-color: $bg-color-box;
         border-radius: $border-radius;
         border: $border;
-        margin: $step;
-        max-height: 498px;
+        max-height: 590px;
+        width: 564px;
         overflow-y: auto;
         color: white;
         line-height: normal;
+        user-select: none;
+        cursor: pointer;
+        margin: auto;
     }
     &__title {
         color: white;
         font-size: $font-size-max;
         font-weight: $font-weight-medium;
+        padding: $step;
     }
 
     &__list {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(7, 48px);
+        grid-gap: $step * 3;
         list-style: none;
-        flex-direction: row;
+        justify-content: center;
         margin: 0;
-        justify-content: space-evenly;
+        margin-bottom: 8px;
     }
 
     &__calendar {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding-bottom: $step * 2;
+        justify-content: space-around;
+        margin-bottom: 16px;
     }
 
     &__item {
@@ -86,38 +103,41 @@
         padding: $step $step;
         color: $text-title-color;
         text-align: center;
+        font-weight: $font-weight-medium;
+        font-size: $font-size-max;
     }
 
     &__days {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(7, 48px);
         grid-template-rows: repeat(4, 48px);
-        grid-gap: $step;
+        grid-column-gap: $step * 3;
+        grid-row-gap: $step * 3;
         list-style: none;
         flex-direction: row;
         align-items: flex-start;
         margin: 0;
-        justify-content: space-evenly;
-        padding: $step $step * 2;
+        padding: $step $step;
         justify-items: center;
         align-items: center;
     }
 
     &__day {
-        width: 42px;
-        height: 42px;
-        
-        &_active-month{
+        width: 46px;
+        height: 46px;
+
+        &_active-month {
             padding: $step $step;
             color: $text-title-color;
             border-radius: 8px;
             background-color: #3b414a;
-            width: 42px;
-            height: 42px;
+            border:2px solid #3b414a;
+            width: 46px;
+            height: 46px;
             text-align: center;
             columns: $color-text-days;
             font-weight: $font-weight-medium;
-            font-size: $font-size-default;
+            font-size: $font-size-calendar;
             &:hover {
                 color: white;
                 background-color: $bg-color-box;
@@ -131,12 +151,13 @@
             padding: $step $step;
             color: $text-title-color;
             border-radius: 8px;
-            width: 42px;
-            height: 42px;
+            border: 2px solid $bg-color-box;;
+            width: 46px;
+            height: 46px;
             text-align: center;
             columns: $color-text-days;
             font-weight: $font-weight-medium;
-            font-size: $font-size-default;
+            font-size: $font-size-calendar;
             &:hover {
                 color: white;
                 background-color: $bg-color-box;
@@ -144,7 +165,6 @@
                 border-color: #1d5eff;
                 background-color: #2c437b;
             }
-            
         }
 
         &_current-day {
@@ -156,7 +176,5 @@
             border-color: #1d5eff;
             color: white;
         }
-        
-
     }
 }
