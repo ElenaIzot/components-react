@@ -6,18 +6,36 @@ export function getDaysForCalendar(year: number, month: number): Date[] {
     const GRID_SIZE = 7 * 6;
 
     const result: Date[] = [];
-    for (let offsetDays = 0; offsetDays <= GRID_SIZE - dayOfWeekForFirstDay; ++offsetDays) {
-        const day = new Date(firstDayOfMonth);
-        day.setDate(day.getDate() + offsetDays);
-        result.push(day);
+
+    if (dayOfWeekForFirstDay == 0) {
+        for (let offsetDays = 0; offsetDays < GRID_SIZE - 6; ++offsetDays) {
+            const day = new Date(firstDayOfMonth);
+            day.setDate(day.getDate() + offsetDays);
+            result.push(day);
+            console.log(result)
+        }
+    } else {
+        for (let offsetDays = 0; offsetDays <= GRID_SIZE - dayOfWeekForFirstDay; ++offsetDays) {
+            const day = new Date(firstDayOfMonth);
+            day.setDate(day.getDate() + offsetDays);
+            result.push(day);
+        }
     }
 
-    
-    for (let offsetDays = 1; offsetDays < dayOfWeekForFirstDay; ++offsetDays) {
-        const day = new Date(firstDayOfMonth);
-        day.setDate(day.getDate() - offsetDays);
-        result.unshift(day);
+    if (dayOfWeekForFirstDay == 0) {
+        for (let offsetDays = 1; offsetDays <= 6; ++offsetDays) {
+            const day = new Date(firstDayOfMonth);
+            console.log(day)
+            day.setDate(day.getDate() - offsetDays);
+            result.unshift(day);
+        }
+    } else {
+        for (let offsetDays = 1; offsetDays < dayOfWeekForFirstDay; ++offsetDays) {
+            const day = new Date(firstDayOfMonth);
+            day.setDate(day.getDate() - offsetDays);
+            result.unshift(day);
+        }
     }
- 
+
     return result
 };
