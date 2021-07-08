@@ -1,0 +1,13 @@
+{
+    "editor.rulers": [
+        {
+            "column": 80,    // spacing of 1st column from left
+            "color": "#9e095b"   // orange, Go Vols!
+          },
+            100,  // 2nd ruler with no color option
+          {
+           "column": 120,      // third ruler
+           "color": "#0c2d6b"  // purple, go Pirates! 
+          },
+    ]
+}
