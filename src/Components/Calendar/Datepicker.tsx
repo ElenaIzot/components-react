@@ -2,8 +2,8 @@ import { useState } from "react";
 import { getDaysForCalendar } from "./Data";
 
 function Datepicker(): JSX.Element {
-    let [visible, setVisible] = useState(false);
-    let [selectedDate, setSelectedDate] = useState(new Date());
+    const [visible, setVisible] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     function showItems(): void {
         setVisible(true);
@@ -23,7 +23,10 @@ function Datepicker(): JSX.Element {
                     </div>
                 </div>
                 <div className="datepicker__datepicker-visible">
-                    <Calendar onDateChanged={(d: Date) => setSelectedDate(d)} date={selectedDate} />
+                    <Calendar
+                        onDateChanged={(d: Date) => setSelectedDate(d)}
+                        date={selectedDate}
+                    />
                 </div>
             </div>)
     } else {
@@ -40,41 +43,58 @@ function Datepicker(): JSX.Element {
     }
 }
 
-function Calendar(props: { date: Date, onDateChanged: (date: Date) => void}): JSX.Element {
-
-    const MONTHS: string[] = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-    let today: string = props.date.toLocaleDateString();
-    let [currentYear, setYear] = useState(props.date.getFullYear());
-    let [selectedDate, setSelectedDate] = useState(today);
-    let [currentMonth, setCurrentMonth] = useState(props.date.getMonth());
-    let [currentDay, setCurrentDay] = useState(today);
-
-    let monthName: string = '';
-    for (let i = 0; i < MONTHS.length; i++) {
-        if (i == currentMonth) {
-            monthName = MONTHS[i];
-        }
-    }
+function Calendar(props: {
+    date: Date,
+    onDateChanged: (date: Date) => void
+}): JSX.Element {
+    const MONTHS: { [key: number]: string } = {
+        0: 'Январь',
+        1: 'Февраль',
+        2: 'Март',
+        3: 'Апрель',
+        4: 'Май',
+        5: 'Июнь',
+        6: 'Июль',
+        7: 'Август',
+        8: 'Сентябрь',
+        9: 'Октябрь',
+        10: 'Ноябрь',
+        11: 'Декабрь'
+    };
+    const today: string = props.date.toLocaleDateString();
+    const [selectedDate, setSelectedDate] = useState('');
+    const [currentDay, setCurrentDay] = useState(today);
+    const [selectedWindow, setSelectedWindow] = useState(props.date);
+    const monthName: string = MONTHS[selectedWindow.getMonth()];
+    const renderedMonth: string = monthName[0].toUpperCase() + monthName.slice(1);
 
     function changeSelectedDate(date: Date): void {
         setSelectedDate(date.toDateString());
         props.onDateChanged(date);
     }
 
-    const renderedMonth: string = monthName[0].toUpperCase() + monthName.slice(1);
-
     function openPreviousMonth(): void {
-        setCurrentMonth(currentMonth - 1)
+        const value = selectedWindow.setMonth(selectedWindow.getMonth() - 1);
+        setSelectedWindow(new Date(value));
     };
 
     function openNextMonth(): void {
-        setCurrentMonth(currentMonth + 1)
+        const value = selectedWindow.setMonth(selectedWindow.getMonth() + 1);
+        setSelectedWindow(new Date(value));
     };
 
-    const listDays: Date[] = getDaysForCalendar(currentYear, currentMonth);
+    const listDays: Date[] = getDaysForCalendar(selectedWindow.getFullYear(), selectedWindow.getMonth());
 
     const renderedlistDays: JSX.Element[] = listDays.map((day, index) => {
-        if (day.getMonth() == currentMonth) {
+        const classesActiveMonth = day.toLocaleDateString() == today
+            ? 'datepicker__day_active-month datepicker__day_selected-day'
+            : 'datepicker__day_active-month';
+
+        const classesInActiveMonth = day.toLocaleDateString() == today
+            ? 'datepicker__day_inactive-month datepicker__day_selected-day'
+            : 'datepicker__day_inactive-month';
+
+        if (day.getMonth() == selectedWindow.getMonth()) {
             if (day.toLocaleDateString() == currentDay) {
                 return <li
                     className="datepicker__day_active-month datepicker__day_current-day"
@@ -82,34 +102,20 @@ function Calendar(props: { date: Date, onDateChanged: (date: Date) => void}): JS
                     key={index}>
                     {day.getDate()}
                 </li>
-            } else if (day.toLocaleDateString() == today) {
-                return <li
-                    className="datepicker__day_active-month datepicker__day_selected-day"
-                    onClick={() => changeSelectedDate(day)}
-                    key={index}>
-                    {day.getDate()}
-                </li>
             } else {
-                return <li className="datepicker__day_active-month"
+                return <li
+                    className={classesActiveMonth}
                     onClick={() => changeSelectedDate(day)}
                     key={index}>
                     {day.getDate()}
                 </li>
             }
         } else {
-            if (day.toLocaleDateString() == today) {
-                return <li className="datepicker__day_inactive-month datepicker__day_selected-day"
-                    onClick={() => changeSelectedDate(day)}
-                    key={index}>
-                    {day.getDate()}
-                </li>
-            } else {
-                return <li className="datepicker__day_inactive-month"
-                    onClick={() => changeSelectedDate(day)}
-                    key={index}>
-                    {day.getDate()}
-                </li>
-            }
+            return <li className={classesInActiveMonth}
+                onClick={() => changeSelectedDate(day)}
+                key={index}>
+                {day.getDate()}
+            </li>
         }
     });
 
@@ -121,7 +127,9 @@ function Calendar(props: { date: Date, onDateChanged: (date: Date) => void}): JS
                 <button className="btn-arrow datepicker__control" onClick={openPreviousMonth}>
                     <span className="btn-arrow__arrow-left"></span>
                 </button>
-                <p className="datepicker__title">{renderedMonth} {currentYear}</p>
+                <p className="datepicker__title">
+                    {renderedMonth} {selectedWindow.getFullYear()}
+                </p>
                 <button className="btn-arrow datepicker__control" onClick={openNextMonth}>
                     <span className="btn-arrow__arrow-right"></span>
                 </button>
@@ -139,9 +147,11 @@ function Calendar(props: { date: Date, onDateChanged: (date: Date) => void}): JS
 function DaysWeek(): JSX.Element {
     const DAYS_IN_WEEK: string[] = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
     const renderedlistDaysWeek = DAYS_IN_WEEK.map((day: string, index: number) => {
-        return <li className="datepicker__day-week" key={index}>
-            {day}
-        </li>
+        const classes = (index == 6 || index == 5)
+            ? "datepicker__day-week datepicker__day-week_holiday"
+            : "datepicker__day-week";
+
+        return <li className={classes} key={index}>{day}</li>
     });
 
     return <ul className="datepicker__list">

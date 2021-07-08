@@ -11,24 +11,28 @@
     width: 564px;
     align-items: center;
     line-height: normal;
-    cursor: pointer;
+   
 
     &__slider {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-column-gap: $step * 6;
+        list-style: none;
         flex-direction: row;
-        justify-content: space-around;
-        margin: $step 0px;
-        padding: $step;
+        margin: $step*2 0px 0px 0px;
+        padding: $step $step;
+        justify-items: center;
+        align-items: center;
     }
 
     &__current-item {
         padding: $step $step * 3;
         font-size: $font-size-max;
         font-weight: $font-weight-medium;
+        cursor: pointer;
     }
 
     &__control {
-       
         padding: $step;
         color: #808497;
         border-radius: 8px;
@@ -38,6 +42,7 @@
         text-align: center;
         font-weight: 600;
         font-size: 22px;
+        cursor: pointer;
     }
 
     &__datepicker-visible {
@@ -58,6 +63,7 @@
         font-size: $font-size-max;
         font-weight: $font-weight-medium;
         padding: $step;
+        cursor: default;
     }
 
     &__list {
@@ -74,6 +80,7 @@
         display: flex;
         justify-content: space-around;
         margin-bottom: 16px;
+
     }
 
     &__item {
@@ -105,6 +112,10 @@
         text-align: center;
         font-weight: $font-weight-medium;
         font-size: $font-size-max;
+        cursor: default;
+        &_holiday{
+            color: #eb3f3fd3;
+        }
     }
 
     &__days {
@@ -125,6 +136,7 @@
     &__day {
         width: 46px;
         height: 46px;
+        cursor: pointer;
 
         &_active-month {
             padding: $step $step;
